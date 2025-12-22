@@ -1,0 +1,219 @@
+
+*{
+    margin: 0px;    
+    padding: 0px;     /* حدود هوامش الصفحة */
+    /* box-sizing: border-box; */
+}
+a{
+    text-decoration: none; /* ازالة الخط تحت الروابط */
+    /* color: aliceblue; */
+       /* اللون للخط */
+}
+.M{
+    color: aliceblue; 
+}
+html{
+    scroll-behavior: smooth;
+}
+header{   
+    position: fixed;   /* يمنع حركت الشريط للاعلاء عند تحريك البطاقات */
+    top:0;
+    left: 0;
+    right: 0;
+    z-index: 1000;  /* ليضمن موقعة الاول على الصفحة  */
+    background-color: #14007b;
+    display: flex;
+    justify-content: space-between;  /* ترتيب العناصر في راس الصفحة */
+    align-items: center;   /* تنزيل العنوان مساوي للشعار */
+    margin: 0px;    /*  هوامش خارجية  */
+}
+header span{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #ffffff;    /* الخط و اللون */
+}
+fieldset{
+     background-color:  #14007b;   /* لون راس الصفحة */
+}
+#popupMenu{
+    display: none;  /* علشان ما تضهر الى عند النقر */
+    position: absolute;   /* من اجل تكون منفصل وثابت في الصفحة */
+    top: 30px;  /* أرتفاع الصورة + قليل من المسافة */
+    right: 10px;   /* أخراجه قليل لليمين */
+    background-color: #14007b;
+    color: #fff;
+    border: 1px solid #ccc;    /* حددود  */
+    padding: 10px;   /* هوامش داخلية */
+    /* z-index: 1000; */
+}
+#main1{
+     position: fixed; /* يمنع حركت الشريط للاعلاء عند تحريك البطاقات */
+    top:0;
+    left: 0;
+    right: 0;
+    z-index: 999;   /* ليضمن موقعة بعد العنوان */
+    background-color: #14007b;
+    padding-top: 48px;
+    overflow-x:auto;   /* يسمح بي التمرير الافقي */
+    /* border-radius: 10px;  */   /* زواية مدورة قليل */  
+    white-space: nowrap;    /* منع نزول الكلمات الى السطر الثاني */
+}
+#main1::-webkit-scrollbar{
+    display: none;  /* يقوم بي اخفاء الشريط */
+}
+#main1 section ul{
+    display: flex;  /* الترتيب افقي للماين ون */
+    list-style: none;    /* ازالت نقاط الترتيب */
+}
+#main1 section ul li a h4{
+    padding: 10px  20px;   /*  هوامش داخلية  */
+    /* border-radius: 30px;  */   /* حدود الهوفار مدور */
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+#main1 section ul li a h4:hover{
+    background-color: #0088ff;
+      /* تاثير تحريك الماوس */
+}
+.scroll-arrow{
+    position: fixed; 
+    top: 70px; 
+    width: 60px;
+    height: 38px;
+    left:0px;
+    padding-top: 2px;
+    transform: translateY(-50%);
+    font-size: 24px;
+    color: #fff;
+    background: linear-gradient(to right,#0088ff,#0b0045,#14007be2,#14007b00);
+    pointer-events: none;
+    z-index: 1000;
+}
+
+     /* تنسيقات راس الصفحة في الاعلى   */
+/* ----------------------------------------- */
+/* ----------------------------------------- */
+#searchInput{
+     border: 3px solid #0088ff;
+     height: 25px;
+     width: 300px;
+     border-radius: 5px;
+     margin: 5px;
+}
+.subjects{   /* المواضيع للبطائق */
+    display: grid;    /* الترتيب افقي عند تكبير الصفحة */
+    grid-template-columns: repeat(auto-fit, minmax(250px,1fr)); /* اصغر حجم يكون 250 للبطائق */
+    gap: 15px; /*  هوامش خارجية */
+    margin: 100px auto;  /* الحدود بين الصناديق و الشريط */
+    max-width: 1200px; /* اكبر عرض للبطائق في الصفحة */
+    width: 90%;  /* الحواف الداخلية */
+}
+.card{
+    height: 250px; /* طول ثابت للبطائق */
+    border-radius: 10px;  /* حدود مدورة للبطائق */
+    overflow: hidden; /* حدود مدورة في رأس الصفحة */
+    box-shadow: 0 4px 8px rgba(0, 0,0, 0.1);  /* ضل للبطاقة مثل الحدود */
+    transition: transform 0.3s ease,box-shadow 0.3s ease;   /* حركت ارتفاع الصندوق */
+    cursor: pointer;  /* يغير شكل الماوس الى يد عند التمرير */
+    text-decoration: none;  /* ازالت الخط تحت الروابط */
+    border: 1px solid #ffffff;  /*مخطط خارجي لبطائقة علشان لما اغير الوضع الليل */
+}
+.card:hover{   /* عند تمرير الماوس */
+    transform: translateY(-5px);  /* الارتفاع للاعلاء */
+    box-shadow: 0 8px 16px rgba(0, 0,0,0.15);  /* ضل للبطائق بشكل حدود*/
+}
+.card-header{   /* رأس البطائق */
+    background-color: #0088ff;
+    color: white;
+    padding: 10px;  /* هوامش داخلية */
+    text-align: center;  /* جعل النص في الوسط */
+     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+.card-body{
+     width: 100%;
+    height: 95px;   /* طول جسم الصفحة */
+    text-align: center; /* جعل النص في الوسط */
+}
+.card img{
+    width: 100%;
+    height: 100px; /* الطول ثابت للصورة دخل البطاقة */
+    object-fit: contain;  /* عرض الصورة على حجمها الطبيعي */
+    margin-bottom: 15px;
+}
+.card h4{
+    margin: 0;
+    color: #ffffff;
+    font-size: 1rem; /* حجم الخط */
+    font-weight: bold;  /* العرض */
+    line-height: 1.4;   /* أرتفاع الخط */
+}
+.card a{
+    width: 100%;
+    height: 100%;
+}
+a.A{
+    color: inherit;
+    transition: transform 0.3s ease,box-shadow 0.3s ease;   
+}
+.subjects p{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    margin: 2%;
+}
+ /* زر لفتح الشروحات */
+.open-modal-btn {
+            margin: 5px;
+            padding: 8px 8px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 13px;
+            font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+        }
+        .open-modal-btn:hover{
+            background-color:#0056b3 ;
+}
+     /* تنسيقات البدي في الصفحة   */
+/* ----------------------------------------- */
+/* ----------------------------------------- */
+footer{
+    background-color: #000000;
+    height: 500px;
+}
+footer h2{
+    color: #ffe252;
+    
+}
+footer h4{
+    color: #fff;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+width: 90%; 
+  margin: 10px auto; 
+}
+footer a img{
+    padding: 20px 0px 0px 0px;
+}
+
+     /* تنسيقات ذيل الصفحة     */
+/* ----------------------------------------- */
+/* ----------------------------------------- */
+
+#click{
+    margin: 7px;
+    direction: rtl;
+    float: left;
+}
+.shar{
+    float: left;
+}
+    /* للجافا سكربت     */
+/* ----------------------------------------- */
+/* ----------------------------------------- */
+
+   
+
+            /* القائمة المنبثقة */
+/* ----------------------------------------- */
+/* ----------------------------------------- */
+
+
+
