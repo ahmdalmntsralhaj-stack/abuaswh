@@ -1,3 +1,6 @@
+             <?php
+session_start(); /* بدء الجلسة في أعلى الصفحة تماماً */
+?>
 <!DOCTYPE html>
 <html lang="en" dir="rtl">
 <head>
@@ -11,20 +14,81 @@
 
      <fieldset>
         <header>
-    <h2 >&nbsp
-        <img src="للتنسيقات/شريط المعلومات.png"alt="logo" width="27" id="thumbnail" >
+            
+    <h2>
+        <img src="للتنسيقات/شريط المعلومات.png"alt="logo" width="20" id="thumbnail" style="float: left;">
              <div id="popupMenu">
                 <p> سوف تكون خطة تعليم هنا إن شا الله </p>
-             </div>
-    </h2>
+                <br>
+                <!-- -----------------------||||||||||||||||--------------------- -->
 
+<div class="user-area">
+    <?php if(isset($_SESSION['user_name'])): ?>
+        <span style="color: #0088ff; font-weight: bold;">مرحباً، <?php echo $_SESSION['user_name']; ?> 👤</span>
+        <a href="logout.php" style="margin-right: 10px; color: red; text-decoration: none; font-size: 12px;">تسجيل خروج</a>
+    <?php else: ?>
+        <button onclick="openLoginModal()" class="login-trigger" style="display:flex; padding: 5px 10px;margin:5px; background: #007bff; color: white; border: none; border-radius: 5px; cursor: pointer;">تسجيل الدخول</button>
+    <?php endif; ?>
+</div>
+
+<div id="loginModal" class="modal-overlay">
+    <div class="modal-card">
+        <div class="modal-header">
+            <h2 id="modalTitle">تسجيل دخول</h2>
+            <span class="close-btn" onclick="closeLoginModal()">&times;</span>
+        </div>
+
+        <form id="loginForm" action="auth_logic.php" method="POST">
+            <input type="number" name="phone" placeholder="رقم الهاتف" class="srh" required>
+            <input type="password" name="password" placeholder="كلمة المرور" class="srh" required>
+            <button type="submit" name="login_btn" class="btn-action btn-upd">دخول</button>
+            <p onclick="toggleForm()" class="toggle-text">ليس لديك حساب؟ سجل الآن</p>
+        </form>
+
+        <form id="registerForm" action="auth_logic.php" method="POST" style="display:none;">
+            <input type="text" name="full_name" placeholder="الاسم الكامل" class="srh" required>
+            <input type="number" name="phone" placeholder="رقم الهاتف" class="srh" required>
+            <input type="password" name="password" placeholder="كلمة المرور الجديدة" class="srh" required>
+            <button type="submit" name="register_btn" class="btn-action btn-add">إنشاء حساب</button>
+            <p onclick="toggleForm()" class="toggle-text">لديك حساب بالفعل؟ دخول</p>
+        </form>
+
+        <button onclick="closeLoginModal()" class="btn-later">التسجيل لاحقاً</button>
+    </div>
+</div>
+
+<style>
+/* التنسيقات المطلوبة */
+.modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: 10000; }
+.modal-card { background: white; width: 340px; margin: 80px auto; padding: 25px; border-radius: 15px; border: 3px solid #007bff; text-align: center; position: relative; }
+.srh { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+.btn-action { width: 100%; padding: 10px; border: none; border-radius: 5px; color: white; cursor: pointer; font-weight: bold; margin-top: 10px; }
+.btn-add { background: #28a745; } .btn-upd { background: #007bff; }
+.btn-later { background: none; color: #888; border: none; margin-top: 15px; cursor: pointer; text-decoration: underline; }
+.toggle-text { color: #007bff; cursor: pointer; margin-top: 10px; font-size: 13px; }
+.close-btn { position: absolute; top: 10px; right: 15px; font-size: 24px; cursor: pointer; }
+</style>
+
+<script>
+function openLoginModal() { document.getElementById("loginModal").style.display = "block"; }
+function closeLoginModal() { document.getElementById("loginModal").style.display = "none"; }
+function toggleForm() {
+    var loginF = document.getElementById("loginForm"), regF = document.getElementById("registerForm"), title = document.getElementById("modalTitle");
+    if (loginF.style.display === "none") { loginF.style.display = "block"; regF.style.display = "none"; title.innerText = "تسجيل دخول"; }
+    else { loginF.style.display = "none"; regF.style.display = "block"; title.innerText = "إنشاء حساب جديد"; }
+}
+</script>
+<!-- -----------------------||||||||||||||||--------------------- --> 
+             </div>  
+    
+</h2>
     <span>
-        <h3>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspكل كتاب يضيف شمعة في الظلام</h3>
+        <h4 id="shar1">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbspكل كتاب يضيف شمعة في الظلام</h4>
     </span>
 
   <span >
-       <img class="shar" src="للتنسيقات/الشعار1 .png" alt="logo" width="39px">
-       <h2 id="click" onclick="WADA()"><img id="click1" src="للتنسيقات/فاتح.png" alt="" width="30" height="30"></h2>
+       <img class="shar" src="للتنسيقات/شعار مكتبة1.png" alt="logo" width="30px">
+       <h2 id="click" onclick="WADA()"><img id="click1" src="للتنسيقات/فاتح.png" alt="" width="25" height="25"></h2>
         <script src="تابع المكتبة.js"></script>
   </span>  
 
@@ -196,13 +260,12 @@
   </section>
 
 </main>
-
 <footer>
     <hr>
     <center>
     <a href="#"><img src="للتنسيقات/سهم الرجوع الى الاعلى.png" alt="للاعلى" width="40px" height="40px"></a>
     <br>
-    <img src="للتنسيقات/الشعار1 .png" alt="logo" width="200px" >
+    <img src="للتنسيقات/شعار مكتبة.png" alt="logo" width="200px" >
     </center>
     <h2 >&nbsp&nbspهدف الموقع</h2>
     <h4>أبو أسوة هو موقع مكتبة إلكترونية يهتم بالعلوم الشرعية
@@ -214,5 +277,5 @@
 <!-- <h4>&nbsp&nbsp🢤&nbsp&nbsp</h4> -->
 
 </body>
-
 </html>
+?>
