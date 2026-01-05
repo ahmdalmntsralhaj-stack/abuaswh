@@ -39,9 +39,9 @@ fieldset{
     position: absolute;   /* من اجل تكون منفصل وثابت في الصفحة */
     top: 30px;  /* أرتفاع الصورة + قليل من المسافة */
     right: 10px;   /* أخراجه قليل لليمين */
-    background-color: #14007b;
+    background-color: #00000093;
     color: #fff;
-    border: 1px solid #ccc;    /* حددود  */
+    border: 1px solid #0088ff;    /* حددود  */
     padding: 10px;   /* هوامش داخلية */
     /* z-index: 1000; */
 }
